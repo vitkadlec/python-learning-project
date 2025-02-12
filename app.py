@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from app.database import engine, Base, get_db
-from app.schemas import UserCreate, UserRead
-from app.crud import create_user, get_user, list_users, delete_user
+from src.database import engine, Base, get_db
+from src.schemas import UserCreate, UserRead
+from src.crud import create_user, get_user, list_users, delete_user
 
 app = FastAPI()
 
