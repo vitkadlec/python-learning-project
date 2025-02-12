@@ -3,7 +3,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.main import app
+from main import app
 from app.database import get_db, Base
 from app.models import User
 
@@ -13,11 +13,8 @@ DATABASE_URL = "sqlite:///:memory:"
 engine = create_engine(
     DATABASE_URL,
     connect_args={"check_same_thread": False},
-    poolclass=StaticPool  # Ensures the same connection is reused
+    poolclass=StaticPool,  # Ensures the same connection is reused
 )
-# #DATABASE_URL = "sqlite:///test.db"
-# DATABASE_URL = "sqlite:///:memory:"
-# engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
@@ -48,6 +45,7 @@ def client():
     yield test_client
 
     Base.metadata.drop_all(bind=engine)
+
 
 def seed_data(db):
     users = [

@@ -6,3 +6,4 @@ pytest-cov
 pydantic
 pydantic[email]
 httpx
+pre-commit

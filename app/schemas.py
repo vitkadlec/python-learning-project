@@ -1,11 +1,14 @@
 from pydantic import BaseModel, EmailStr, ConfigDict
 
+
 class UserBase(BaseModel):
     username: str
     email: EmailStr
 
+
 class UserCreate(UserBase):
     pass
+
 
 class UserRead(UserBase):
     id: int
