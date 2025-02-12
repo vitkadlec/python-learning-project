@@ -25,9 +25,6 @@ def create_user(db: Session, user: UserCreate):
     return db_user
 
 def get_user(db: Session, user_id: int):
-    if user_id <= 0:
-        raise HTTPException(status_code=400, detail="Invalid user ID format.")
-
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail=f"User with ID {user_id} not found.")
@@ -37,9 +34,6 @@ def list_users(db: Session):
     return db.query(User).all()
 
 def delete_user(db: Session, user_id: int):
-    if user_id <= 0:
-        raise HTTPException(status_code=400, detail="Invalid user ID format.")
-
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail=f"User with ID {user_id} not found.")
