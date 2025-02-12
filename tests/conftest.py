@@ -3,9 +3,9 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from main import app
-from app.database import get_db, Base
-from app.models import User
+from app import app
+from src.database import get_db, Base
+from src.models import User
 
 from sqlalchemy.pool import StaticPool
 
