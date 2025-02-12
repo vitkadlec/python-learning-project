@@ -25,4 +25,7 @@ jobs:
       - name: Run pre-commit checks
         run: pre-commit run --all-files
       - name: Run tests
-        run: pytest --cov=app --cov-report=term-missing
+        run: |
+          source venv/bin/activate
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest --cov=app --cov-report=term-missing
