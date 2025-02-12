@@ -7,8 +7,17 @@ from app.main import app
 from app.database import get_db, Base
 from app.models import User
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///test.db"
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+from sqlalchemy.pool import StaticPool
+
+DATABASE_URL = "sqlite:///:memory:"
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False},
+    poolclass=StaticPool  # Ensures the same connection is reused
+)
+# #DATABASE_URL = "sqlite:///test.db"
+# DATABASE_URL = "sqlite:///:memory:"
+# engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
